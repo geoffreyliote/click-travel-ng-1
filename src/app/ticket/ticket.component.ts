@@ -4,18 +4,18 @@ import { ITicket } from '../ITicket';
 import { TicketService } from '../ticket.service';
 
 @Component({
-  selector: 'app-ticket-list',
-  templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.scss']
+  selector: 'app-ticket',
+  templateUrl: './ticket.component.html',
+  styleUrls: ['./ticket.component.scss']
 })
-export class TicketListComponent implements OnInit {
-title = "Choose a Ticket"
-tickets: ITicket[]
+export class TicketComponent implements OnInit {
+  title = "Choose a Ticket"
+  ticket: ITicket
   constructor(private route: ActivatedRoute, private tickerService : TicketService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.tickerService.getTickets(params['code']).subscribe(res => {console.log(res), this.tickets = res})
+      this.tickerService.getTicket(params['number']).subscribe(res => {console.log(res), this.ticket = res})
     })
   }
 
